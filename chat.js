@@ -41,6 +41,31 @@ app.get("/", function(req, res) {
 
 });
 
+
+// comunicarse con todos el servidor
+var io=socketio.listen(servidor);
+
+io.sockets.on("connection",function(socket){
+/*escuchando si el cliente envia un mensaje  con metodo on*/
+socket.on("mensaje_al_servidor", function(datosCliente){
+	
+	var nombreCliente= datosCliente.nombre;
+	var mensajeCliente = datosCliente.mensaje;
+	io.sockets.emit("mensaje_al_cliente",{
+		
+		nombre: nombreCliente,
+		mensaje: mensajeCliente
+	});
+	
+	
+});
+	
+	
+	
+	
+	
+});// escuchando peticiones  de conexion de los clientes
+
 //--------HABILITAMOS WEBSOCKETS---------
 /*var io = socketio.listen(servidor);
 //habilita un websocket en el puero 8021-se deb mostar info -socket.io

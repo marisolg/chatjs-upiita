@@ -11,28 +11,31 @@
 		<script type="text/javascript">
 		 
 		/*abrimos l conexion, io se define cuando importo socket io*/
-	/*	var socket = io.connect(location.origin);
+		var socket = io.connect(location.origin);
 		
 		$(function(){
-            $("#boton").click(function(){
-               
-                var nombre = $("#nombre-usuario").val();
-                var mensaje = $("#mensaje-usuario").val();
+		/*nviar mensajes al servidor*/
+		$("#boton").click(function(){
+	/*btener los  datos que voy a enviar*/
+		
+		var nombreCliente = $("#nombre-usuario").val();
+        var mensajeCliente = $("#mensaje-usuario").val();
                 socket.emit("mensaje_al_servidor",{
-                    nombre: nombre,
-                    mensaje: mensaje
+                    nombre: nombreCliente,
+                    mensaje: mensajeCliente
                 });
-            });
-            */
-            /*escucho el mensaje al cliente*/
-         /*   socket.on("mensaje_al_cliente", function(datosServidor){
-                var nombre = datosServidor.nombre;
-                var mensaje =  datosServidor.mensaje;
-                /*hay que validar el mensaje del lado del servidor*/
-                var caja = "<div class='mensaje'> <span>" + nombre + " dice: </span> "+ mensaje +"</div>";
+		});
+		/*recibir mensaje al servidor*/
+		socket.on("mensaje_al_cliente", function(datosServidor){
+		var nom = datosServidor.nombre;
+		var mens = datosServidor.mensaje;
+		/* pintar el mensaje en la interfaz*/
+		 var caja = "<div class='mensaje'> <span>" + nom + " dice: </span> "+ mens +"</div>";
                 $("#mensajes").append(caja);
-            });
-		});		*/
+			});
+			
+
+		});	
 			
 		</script>
 	</head>
